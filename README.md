@@ -1,7 +1,7 @@
 # Loja de Materiais
 
 
-Projeto da disciplina "Desenvolvimento Web" do curso bacharelado em sistemas de informação, onde a proposta é criar um site para uma loja de materiais de construção.
+Projeto da disciplina "Desenvolvimento Web" do curso bacharelado em sistemas de informação, onde a proposta é criar um site para uma loja de materiais.
 
 
 ## Começando
