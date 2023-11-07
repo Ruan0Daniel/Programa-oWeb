@@ -12,7 +12,6 @@ Para iniciar o desenvolvimento, é necessário clonar o projeto do GitHub num di
 
 
 ```bash
-  npm install my-project
-  cd my-project
+
 ```
     
