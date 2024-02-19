@@ -12,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Compra implements Serializable {
@@ -23,9 +25,11 @@ public class Compra implements Serializable {
 	private Long id;
 
 	@Column(name = "datahora")
+	@PastOrPresent(message="Não pode ser no futuro")
 	private String dataHora;
 
 	@Column(name = "precoFinal")
+	@PositiveOrZero(message="Tem que ser maior ou igual a 0")
 	private float precoFinal;
 
 	@Column(name = "vendaConluida")

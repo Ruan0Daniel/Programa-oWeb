@@ -2,7 +2,7 @@
 ## Versionamento
 | Data | Versão | Descrição | Autor(es) |
 |:----:|:------:|:---------:|:---------:|
-| 05/02/2024 | 0.1 | Criação do documento | [Ruan Manhães](https://github.com/Ruan0Daniel) |
+| 23/10/2023 | 0.1 | Criação do documento | [Ruan Manhães](https://github.com/Ruan0Daniel) |
 | 05/02/2024 | 0.2 | Reorganização as classes e atributos | [Ruan Manhães](https://github.com/Ruan0Daniel) |
 
 ## Definição
@@ -15,7 +15,7 @@
 ![diagrama_de_Classes](./Imgs/diagrama_1.png)
 
 ##### *Versão 0.2*
-![diagrama_de_Classes](./Imgs/diagrama_2.jpg)
+![diagrama_de_Classes](./Imgs/diagrama_2.png)
 
 ## Referências
 
