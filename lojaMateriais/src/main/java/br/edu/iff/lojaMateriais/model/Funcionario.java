@@ -3,6 +3,9 @@ package br.edu.iff.lojaMateriais.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "Funcionario")
@@ -11,9 +14,11 @@ public class Funcionario extends Pessoa {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "funcao")
+	@NotEmpty
 	private String funcao;
 
 	@Column(name = "salario")
+	@Positive(message="O saldo precisa ser maior do que 0 (zero).")
 	private float salario;
 
 	@Column(name = "data")

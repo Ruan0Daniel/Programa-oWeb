@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 
 @Entity 
@@ -19,15 +21,19 @@ public class Produto implements  Serializable{
 	 private Long id;
 	
 	@Column(name = "nome")
+	@Size(min=1,max=60,message="Tem que ter entre 1 e 60 caractéres")
 	private String nome;
 	
 	@Column(name = "descricao")
+	@Size(min=1,max=512,message="Tem que ter entre 1 e 512 caractéres")
 	private String descricao;
 	
 	@Column(name = "preco")
+	@PositiveOrZero(message="Tem que ser maior ou igual a 0")
 	private Float preco;
 	
 	@Column(name = "quantidade")
+	@PositiveOrZero(message="Tem que ser maior ou igual a 0")
 	private Integer quantidadeEstoque;
 	
 	public Produto(String nome, String descricao, Float preco, Integer quantidadeEstoque) {

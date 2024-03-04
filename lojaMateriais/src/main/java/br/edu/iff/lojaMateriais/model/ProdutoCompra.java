@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class ProdutoCompra implements Serializable {
@@ -18,15 +20,18 @@ public class ProdutoCompra implements Serializable {
 	private Long id;
 
 	@Column(name = "nome")
+	@NotEmpty
 	private String nome;
 
 	@Column(name = "descricao")
 	private String descricao;
 
 	@Column(name = "preco")
+	@PositiveOrZero(message="Tem que ser maior ou igual a 0")
 	private Float preco;
 
 	@Column(name = "quantidadeAdquirida")
+	@PositiveOrZero(message="Tem que ser maior ou igual a 0")
 	private Integer quantidadeAdquirida;
 
 	public ProdutoCompra(String nome, String descricao, Float preco, Integer quantidadeAdquirida) {
