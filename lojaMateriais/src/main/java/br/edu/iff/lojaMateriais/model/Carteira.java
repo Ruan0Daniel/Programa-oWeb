@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Carteira implements Serializable {
@@ -18,6 +19,7 @@ public class Carteira implements Serializable {
 	private Long id;
 
 	@Column(name = "saldoDisponivel")
+	@PositiveOrZero(message="O saldo precisa ser maior ou igual a 0 (zero).")
 	private float saldoDisponivel;
 
 	public Carteira() {

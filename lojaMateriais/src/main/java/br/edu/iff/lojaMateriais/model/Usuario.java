@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 
 @Entity 
@@ -19,9 +22,12 @@ public class Usuario implements Serializable{
 	private Long id;
 	
 	@Column(name = "email")
+	@Email(message="Tem que ser em formato de email")
 	private String email;
 	
 	@Column(name = "senha")
+	@Size(min=8,max=20,message="Tem que ter entre 8 e 20 caractéres")
+	@NotEmpty // Não deve ser NULO e nem VAZIO.
 	private String senha;
 	
 	@Column(name = "nivelAcesso")
