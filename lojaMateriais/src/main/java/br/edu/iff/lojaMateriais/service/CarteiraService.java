@@ -38,7 +38,7 @@ public class CarteiraService {
 	}
 
 	public String AtualizarSaldo(Long id, Float valor) {
-
+		
 		Carteira carteira = carteiraRepository.findById(id).orElse(null);
 
 		if (carteira == null) {

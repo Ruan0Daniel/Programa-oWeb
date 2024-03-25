@@ -80,7 +80,7 @@ public class FuncionarioService {
 			}
 
 			if (funcao != null) {
-				funcionario.setNome(funcao);
+				funcionario.setFuncao(funcao);
 			}
 
 			if (salario != null) {
@@ -88,7 +88,7 @@ public class FuncionarioService {
 			}
 
 			if (dataAdmissao != null) {
-				funcionario.setTelefone(dataAdmissao);
+				funcionario.setDataAdimissao(dataAdmissao);
 			}
 
 			funcionarioRepository.save(funcionario); // Salva as alterações no banco de dados.

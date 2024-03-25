@@ -32,7 +32,7 @@ public class Carteira implements Serializable {
 
 	public void atualizarSaldo(float valor) {
 
-		this.saldoDisponivel = saldoDisponivel + valor;
+		this.saldoDisponivel = valor;
 	}
 
 	public float getSaldoDisponivel() {

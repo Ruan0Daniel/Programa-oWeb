@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    
+    <title>Cadastro</title>
+    
+    <link th:replace="~{layoutBase :: fragmento-head}">
+    
+</head>
+
+<body>    
+    
+    <link th:replace="~{layoutBase :: fragmento-header}">
+    
+    <link th:replace="~{layoutBase :: fragmento-simbolos}">
+    
+    <main class="d-flex justify-content-center align-items-center" style="min-height: 100vh; margin-top: -100px;">
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Informações Pessoais</h4>
+            
+            <form class="needs-validation" novalidate action="#" th:action="@{/cliente/cadastrar}" th:object="${cliente_add}" method="post">               
+                <div class="row g-3">    
+                    <div class="col-12">
+						
+                        <label for="nome" class="form-label">Nome Completo</label>
+                        <input type="text" class="form-control" th:field="*{nome}" required />
+                        
+                        <div class="invalid-feedback">
+                            Valid first name is required.
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-12">
+                        <label for="phone" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" th:field="*{telefone}"  placeholder="(22) 99876-4321" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid phone number.
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="cpf" class="form-label">CPF</label>
+                        <input type="text" class="form-control" th:field="*{cpf}" placeholder="123.456.789-00" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid CPF.
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+                        <div class="invalid-feedback">
+                            Please enter a valid email address for shipping updates.
+                        </div>
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <label for="password" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senha" name="senha" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Please provide a password.
+                        </div>
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <label for="confirmPassword" class="form-label">Confirmar Senha</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Please confirm your password.
+                        </div>
+                    </div>
+
+                    <div class="col-12 form-check">
+                        <input type="checkbox" class="form-check-input" id="terms">
+                        <label class="form-check-label" for="terms">Aceitar termos e condições</label>
+                    </div>
+
+                    <div class="col-12 form-check">
+                        <input type="checkbox" class="form-check-input" id="offers">
+                        <label class="form-check-label" for="offers">Receber ofertas e promoções por email</label>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Criar conta</button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </main>
+
+    <link th:replace="~{layoutBase :: fragmento-Dark-Light}">
+
+    <link th:replace="~{layoutBase :: fragmento-footer}">
+
+</body>
+
+</html>
