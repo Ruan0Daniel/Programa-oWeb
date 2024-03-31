@@ -160,7 +160,7 @@
 						<h1 class="h2">Gerenciar Compras - Editar</h1>
 					</div>
 
-					<form class="needs-validation" novalidate th:action="@{/compra/editar/{id}(id=${editarCompra.id})}" th:object="${editarCompra}"
+					<form class="needs-validation" novalidate th:action="@{/compra/atualizar/{id}(id=${editarCompra.id})}" th:object="${editarCompra}"
 						method="post">
 						<div class="row g-3">
 							<div class="col-6">

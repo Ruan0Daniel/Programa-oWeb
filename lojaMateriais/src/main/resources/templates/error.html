@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        table tr:last-child td {
+            border-bottom: none;
+        }
+        table td:first-child {
+            font-weight: bold;
+            color: #555;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Error</h1>
+        <table>
+            <tr>
+                <td>Data</td>
+                <td th:text="${timestamp}"></td>
+            </tr>
+            <tr>
+                <td>Path</td>
+                <td th:text="${path}"></td>
+            </tr>
+            <tr>
+                <td>Erro</td>
+                <td th:text="${error}"></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td th:text="${status}"></td>
+            </tr>
+            <tr>
+                <td>Messagem</td>
+                <td th:text="${message}"></td>
+            </tr>
+            <tr>
+                <td>Exception</td>
+                <td th:text="${exception}"></td>
+            </tr>
+            <tr>
+                <td>Trace</td>
+                <td th:text="${trace}"></td>
+            </tr>
+            <tr th:if="${msgErros != null}">
+                <td>Mensagem error de exception específica</td>
+                <td th:text="${msgErros}"></td>
+            </tr>
+            <tr th:if="${mensagemErro != null}">
+                <td>Mensagem error de BindingResult</td>
+                <td th:text="${mensagemErro}"></td>
+            </tr>
+        </table>
+        <div class="button-container">
+            <button class="back-button" onclick="window.history.back()">Voltar</button>
+        </div>
+    </div>
+</body>
+</html>

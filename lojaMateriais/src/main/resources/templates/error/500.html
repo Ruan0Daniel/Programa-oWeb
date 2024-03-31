@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Erro 500</title>
+    <link th:replace="~{layoutBase :: fragmento-head}">
+    <style>
+        main {
+            min-height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <link th:replace="~{layoutBase :: fragmento-header}">
+    <link th:replace="~{layoutBase :: fragmento-simbolos}">
+
+    <main> 
+		
+        <div class="container mt-4">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Erro interno do servidor</h1>
+            <h3 class="display-5">Erro 500</h3>
+            <p class="lead">Desculpe-nos, ocorreu um erro interno no servidor. Por favor, tente novamente mais tarde.</p>
+            <a class="btn btn-secondary btn-lg" th:href="@{~/./}" role="button">Voltar à página inicial</a>
+        </div>
+    </div>
+
+    </main>
+    <link th:replace="~{layoutBase :: fragmento-Dark-Light}">
+</body>
+
+</html>

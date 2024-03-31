@@ -84,12 +84,16 @@ public class CompraControllerView {
 		return "gerenciarCompras";
 	}
 	
-	@GetMapping("/atualizar/{id}")
-	public String atualizarCompra(@PathVariable("id") Long idCompra, @ModelAttribute Compra compra) throws Exception {
+	@PostMapping("/atualizar/{id}")
+	public String atualizarCompra(@PathVariable("id") Long idCompra, @ModelAttribute Compra compra, HttpSession session, HttpServletRequest request) throws Exception {
 		
 		compraService.atualizarCompra(idCompra, compra.getDataHora(), compra.getPrecoFinal());
 		
-		return "gerenciarCompras";
+		 // Obtenha a URL da página anterior
+	    String referer = request.getHeader("Referer");
+	    
+	    // Redirecione de volta para a página anterior
+	    return "redirect:" + referer;
 	}
 	
 	

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Erro 404</title>
+	<link th:replace="~{layoutBase :: fragmento-head}">
+	<style>
+		main {
+			min-height: 70vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+</head>
+
+<body>
+	<link th:replace="~{layoutBase :: fragmento-header}">
+	<link th:replace="~{layoutBase :: fragmento-simbolos}">
+
+	<main>
+
+		<div class="container mt-4">
+			<div class="jumbotron text-center">
+				<h1 class="display-4">Página não encontrada</h1>
+				<h3 class="display-5">Erro 404</h3>
+				<p class="lead">A página que você está procurando não foi
+					encontrada. Verifique se digitou o endereço corretamente ou retorne
+					à página inicial.</p>
+				<a class="btn btn-secondary btn-lg" th:href="@{~/./}" role="button">Voltar
+					à página inicial</a>
+			</div>
+		</div>
+
+	</main>
+	<link th:replace="~{layoutBase :: fragmento-Dark-Light}">
+</body>
+
+</html>
