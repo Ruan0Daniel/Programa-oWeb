@@ -4,6 +4,7 @@
 |:----:|:------:|:---------:|:---------:|
 | 23/10/2023 | 0.1 | Criação do documento | [Ruan Manhães](https://github.com/Ruan0Daniel) |
 | 05/02/2024 | 0.2 | Reorganização as classes e atributos | [Ruan Manhães](https://github.com/Ruan0Daniel) |
+| 31/03/2024 | 0.3 | Inclusão da classe Item e ajustes das demais classes | [Ruan Manhães](https://github.com/Ruan0Daniel) |
 
 ## Definição
 
@@ -16,6 +17,9 @@
 
 ##### *Versão 0.2*
 ![diagrama_de_Classes](./Imgs/diagrama_2.png)
+
+##### *Versão 0.3*
+![diagrama_de_Classes](./Imgs/diagrama_3.png)
 
 ## Referências
 

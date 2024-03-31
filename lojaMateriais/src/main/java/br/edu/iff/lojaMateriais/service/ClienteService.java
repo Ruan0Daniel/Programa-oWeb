@@ -3,6 +3,7 @@ package br.edu.iff.lojaMateriais.service;
 import org.springframework.stereotype.Service;
 
 import br.edu.iff.lojaMateriais.repository.ClienteRepository;
+import jakarta.transaction.Transactional;
 import br.edu.iff.lojaMateriais.model.Cliente;
 import br.edu.iff.lojaMateriais.model.Carrinho;
 import br.edu.iff.lojaMateriais.model.Carteira; // Adicione a importação da classe Carteira
@@ -76,12 +77,11 @@ public class ClienteService {
 
 		return clienteRepository.findById(id);
 	}
+	
 
 	public String atualizarCliente(Long id, String email, String senha, String nome, String cpf, String telefone) {
 
 		Cliente cliente = clienteRepository.findById(id).get();
-
-		Long idUsuario = cliente.getUsuario().getId();
 
 		if (cliente == null) {
 			return "Cliente não encontrado.";
@@ -89,6 +89,8 @@ public class ClienteService {
 
 		else {
 
+			Long idUsuario = cliente.getUsuario().getId();
+			
 			usuarioService.atualizarUsuario(idUsuario, email, senha);
 
 			if (nome != null) {

@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Carrinho implements Serializable {
@@ -19,38 +20,47 @@ public class Carrinho implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@PositiveOrZero(message = "O valor total deve ser maior ou igual a 0")
+	private float valorTotal = 0;
 
 	@OneToMany // (cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "produtos")
-	private List<Produto> listaDeProdutos;
+	private List<Item> listaDeItems;
 
-	public void adicionarProduto(Produto produto) {
+	public void adicionarProduto(Item item) {
 
-		if (listaDeProdutos == null) {
-			listaDeProdutos = new ArrayList<>();
+		if (listaDeItems == null) {
+			listaDeItems = new ArrayList<>();
 		}
 
-		listaDeProdutos.add(produto);
+		this.valorTotal = this.valorTotal + (item.getProduto().getPreco() * item.getQuantidade());
+		
+		listaDeItems.add(item);
 	}
 
-	public void removerProduto(Produto produto) {
+	public void removerProduto(Item item) {
 
-		if (listaDeProdutos != null) {
-			listaDeProdutos.remove(produto);
+		if (listaDeItems != null) {
+			listaDeItems.remove(item);
 		}
+		
+		this.valorTotal = this.valorTotal - (item.getProduto().getPreco() * item.getQuantidade());
 	}
 
 	public float calcularTotal() {
 
 		float total = 0;
+		int quantidade = 0;
 
-		if (listaDeProdutos != null) {
-			for (Produto produto : listaDeProdutos) {
-				total += produto.getPreco();
+		if (listaDeItems != null) {
+			for (Item item : listaDeItems) {
+				total += item.getProduto().getPreco() * item.getQuantidade();
+				quantidade += 1;
 			}
 		}
 
-		return total;
+		return quantidade;
 	}
 
 	public Carrinho() {
@@ -65,11 +75,21 @@ public class Carrinho implements Serializable {
 		this.id = id;
 	}
 
-	public List<Produto> getListaDeProdutos() {
-		return listaDeProdutos;
+	public List<Item> getListaDeItems() {
+		return listaDeItems;
 	}
 
-	public void setListaDeProdutos(List<Produto> listaDeProdutos) {
-		this.listaDeProdutos = listaDeProdutos;
+	public void setListaDeItems(List<Item> listaDeItems) {
+		this.listaDeItems = listaDeItems;
 	}
+	
+	public float getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(float valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+
 }

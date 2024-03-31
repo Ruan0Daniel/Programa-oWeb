@@ -1,8 +1,10 @@
 package br.edu.iff.lojaMateriais.service;
 
 import br.edu.iff.lojaMateriais.model.Carrinho;
+import br.edu.iff.lojaMateriais.model.Item;
 import br.edu.iff.lojaMateriais.model.Produto;
 import br.edu.iff.lojaMateriais.repository.CarrinhoRepository;
+import br.edu.iff.lojaMateriais.repository.ItemRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,17 @@ import java.util.Optional;
 public class CarrinhoService {
 
 	private final CarrinhoRepository carrinhoRepository;
+	private final ItemRepository itemRepository;
 	private final ProdutoService produtoService;
+	private final ItemService itemService;
 
-	public CarrinhoService(CarrinhoRepository carrinhoRepository, ProdutoService produtoService) {
+	public CarrinhoService(CarrinhoRepository carrinhoRepository, ItemRepository itemRepository, ProdutoService produtoService, ItemService itemService) {
+		
 		this.carrinhoRepository = carrinhoRepository;
+		this.itemRepository = itemRepository;
 		this.produtoService = produtoService;
+		this.itemService = itemService;
+		
 	}
 
 	public List<Carrinho> listarCarrinhos() {
@@ -29,10 +37,28 @@ public class CarrinhoService {
 		return carrinhoRepository.findById(id);
 	}
 
-	public String adicionarProdutoNoCarrinho(Long idCarrinho, Long idProduto) {
+	public String adicionarProdutoNoCarrinho(Long idCarrinho, Long idProduto, Integer quantidade) {
 
 		Carrinho carrinho = obterCarrinho(idCarrinho).get();
+		
 		Produto produto = produtoService.obterProdutoPorId(idProduto).get();
+		
+		int quantidadeExistente = 0;
+		
+		for (Item item : carrinho.getListaDeItems()) { 
+			
+			if(idProduto == item.getProduto().getId())
+			{
+				quantidadeExistente = item.getQuantidade();
+				item.setQuantidade(quantidade + quantidadeExistente);
+				
+				carrinho.adicionarProduto(item);
+				carrinhoRepository.save(carrinho);		
+				
+				return "Item adicionado";
+			}
+			
+		}
 
 		if (carrinho == null) {
 			return "Carrinho não encontrado";
@@ -41,31 +67,39 @@ public class CarrinhoService {
 		if (produto == null) {
 			return "Produto não encontrado";
 		}
-
-		carrinho.adicionarProduto(produto);
+		
+		
+		Item item = new Item(produto, quantidade);
+		
+		itemRepository.save(item);
+		
+		carrinho.adicionarProduto(item);
 		carrinhoRepository.save(carrinho);
 
 		return "Operação realizada";
 	}
 
-	public String removerProdutoDoCarrinho(Long idCarrinho, Long idProduto) {
+	public String removerProdutoDoCarrinho(Long idCarrinho, Long idItem) {
 
 		Optional<Carrinho> carrinhoOptional = obterCarrinho(idCarrinho);
-		Optional<Produto> produtoOptional = produtoService.obterProdutoPorId(idProduto);
+		
+		Optional<Item> itemOptional = itemService.obterItemPorId(idItem);
 
 		if (carrinhoOptional.isEmpty()) {
 			return "Carrinho não encontrado";
 		}
 
-		if (produtoOptional.isEmpty()) {
+		if (itemOptional.isEmpty()) {
 			return "Produto não encontrado";
 		}
 
 		Carrinho carrinho = carrinhoOptional.get();
-		Produto produto = produtoOptional.get();
+		Item item = itemOptional.get();
 
-		carrinho.removerProduto(produto);
+		carrinho.removerProduto(item);
 		carrinhoRepository.save(carrinho);
+		
+		itemService.deletarItem(idItem);
 
 		return "Operação realizada";
 	}
@@ -82,7 +116,7 @@ public class CarrinhoService {
 	}
 
 	public void atualizarCarrinho(Carrinho carrinho) {
-
+		
 		carrinhoRepository.save(carrinho);
 	}
 
@@ -93,5 +127,22 @@ public class CarrinhoService {
 
 		return carrinho;
 	}
+	
+	public String editarCarrinho(Long idCarrinho, Float valorFinal) {
+		
+		Carrinho carrinho = obterCarrinho(idCarrinho).orElse(null);
+		
+		if(carrinho != null && valorFinal != null)
+		{
+			carrinho.setValorTotal(valorFinal);
+			carrinhoRepository.save(carrinho);
+			
+			return "Valor final atualizado";
+		}
+
+		return "Valor final não foi atualizado";
+		
+	}
+
 
 }

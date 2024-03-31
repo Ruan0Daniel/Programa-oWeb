@@ -26,19 +26,12 @@ public class CompraRestController {
 		this.compraService = compraService;
 	}
 
-	@PostMapping("{idCliente}")
-	@ResponseBody
-	@Operation(summary = "Criar processo de compra.")
-	public String CriarCompra(@PathVariable("idCliente") Long idCliente) {
-		return compraService.criarCompra(idCliente);
-	}
-
-	@PutMapping("/{id}")
+	@PostMapping("/{idCliente}")
 	@ResponseBody
 	@Operation(summary = "Confirmar compra.")
-	public String confirmarCompra(@PathVariable("id") Long id) {
+	public String confirmarCompra(@PathVariable("idCliente") Long idCliente) {
 
-		return compraService.confirmarCompra(id);
+		return compraService.finalizarCompra(idCliente);
 
 	}
 

@@ -2,6 +2,7 @@ package br.edu.iff.lojaMateriais.service;
 
 import br.edu.iff.lojaMateriais.model.Usuario;
 import br.edu.iff.lojaMateriais.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,7 @@ public class UsuarioService {
 		return "Usuario criado com sucesso.";
 	}
 
+	@Transactional
 	public String atualizarUsuario(Long id, String email, String senha/* , Integer nivelAcesso */) {
 
 		Usuario usuario = usuarioRepository.findById(id).orElse(null);

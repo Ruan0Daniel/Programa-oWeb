@@ -26,13 +26,13 @@ public class CarrinhoRestController {
 		this.carrinhoService = carrinhoService;
 	}
 
-	@PutMapping("/adicionar/{idCarrinho}/{idProduto}")
+	@PutMapping("/adicionar/{idCarrinho}/{idProduto}/{quantidade}")
 	@ResponseBody
 	@Operation(summary = "Adicionar produtos no carrinho.")
 	public String adicionarProdutoNoCarrinho(@PathVariable("idCarrinho") Long idCarrinho,
-			@PathVariable("idProduto") Long idProduto) {
+			@PathVariable("idProduto") Long idProduto, Integer quantidade) {
 
-		return carrinhoService.adicionarProdutoNoCarrinho(idCarrinho, idProduto);
+		return carrinhoService.adicionarProdutoNoCarrinho(idCarrinho, idProduto, quantidade);
 	}
 
 	@PutMapping("/remover/{idCarrinho}/{idProduto}")
@@ -77,6 +77,15 @@ public class CarrinhoRestController {
 	@Operation(summary = "Excluir carrinho.")
 	public String excluirCarrinho(Long id) {
 		return carrinhoService.deletarCarrinho(id);
+	}
+	
+	@PutMapping("/editar/{idCarrinho}")
+	@ResponseBody
+	@Operation(summary = "Editar valor final do carrinho.")
+	public String editarCarrinho(@PathVariable("idCarrinho") Long idCarrinho,
+			Float valorFinal) {
+
+		return carrinhoService.editarCarrinho(idCarrinho, valorFinal);
 	}
 
 }

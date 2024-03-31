@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<title>Login</title>
+
+	<link th:replace="~{layoutBase :: fragmento-head}">
+
+</head>
+
+<body>
+
+	<link th:replace="~{layoutBase :: fragmento-header}">
+
+	<link th:replace="~{layoutBase :: fragmento-simbolos}">
+
+	<main>
+		<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+			<div class="row align-items-center g-lg-5 py-5">
+				<div class="col-lg-7 text-center text-lg-start">
+					<h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Vertically centered hero sign-up form
+					</h1>
+					<p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls.
+						Each required form group has a validation state that can be triggered by attempting to submit
+						the form without completing it.</p>
+				</div>
+				<div class="col-md-10 mx-auto col-lg-5">
+					<form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+						<div class="form-floating mb-3">
+							<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+							<label for="floatingInput">Endereço de Email</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+							<label for="floatingPassword">Senha</label>
+						</div>
+						<div class="checkbox mb-3">
+							<label>
+								<input type="checkbox" value="remember-me"> Lembre-me
+							</label>
+						</div>
+						<button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+						
+						<!-- Opções para redefinir senha e criar conta -->
+						<div class="mt-4 text-center">
+							<a href="#" class="text-decoration-none">Esqueceu a senha?</a>
+							<span class="mx-2">|</span>
+							<a href="#" class="text-decoration-none">Não tem uma conta?</a>
+						</div>
+						
+						<hr class="my-4">
+						<h2 class="fs-5 fw-bold mb-3">Outras formas de login</h2>
+						<button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+							<svg class="bi me-1" width="16" height="16">
+								<use xlink:href="#twitter" />
+							</svg>
+							Entrar com Twitter
+						</button>
+						<button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
+							<svg class="bi me-1" width="16" height="16">
+								<use xlink:href="#facebook" />
+							</svg>
+							Entrar com Facebook
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<link th:replace="~{layoutBase :: fragmento-Dark-Light}">
+
+	<link th:replace="~{layoutBase :: fragmento-footer}">
+
+</body>
+
+</html>

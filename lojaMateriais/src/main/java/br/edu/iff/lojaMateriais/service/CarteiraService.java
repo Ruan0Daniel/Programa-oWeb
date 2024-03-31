@@ -38,7 +38,7 @@ public class CarteiraService {
 	}
 
 	public String AtualizarSaldo(Long id, Float valor) {
-
+		
 		Carteira carteira = carteiraRepository.findById(id).orElse(null);
 
 		if (carteira == null) {
@@ -66,6 +66,25 @@ public class CarteiraService {
 		carteiraRepository.save(carteira);
 
 		return carteira;
+	}
+	
+	public String editarSaldo(Long id, Float valor) {
+		
+		Carteira carteira = carteiraRepository.findById(id).orElse(null);
+		
+		if (carteira == null) {
+			return "carteira não encontrada.";
+		} else {
+
+			if (valor != null) {
+				carteira.setSaldoDisponivel(valor);
+			}
+
+			carteiraRepository.save(carteira); // Salva as alterações no banco de dados.
+
+			return "Saldo atualizado com sucesso.";
+		}
+		
 	}
 
 }

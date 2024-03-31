@@ -1,7 +1,6 @@
 package br.edu.iff.lojaMateriais.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -12,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
@@ -25,7 +23,6 @@ public class Compra implements Serializable {
 	private Long id;
 
 	@Column(name = "datahora")
-	@PastOrPresent(message="Não pode ser no futuro")
 	private String dataHora;
 
 	@Column(name = "precoFinal")
@@ -37,15 +34,17 @@ public class Compra implements Serializable {
 
 	@OneToMany
 	@JoinColumn(name = "listaProdutos")
-	private List<ProdutoCompra> listaDeProdutosCompra = null;
+	private List<Item> listaDeProdutos = null;
 
 	@ManyToOne
-	@JoinColumn(name = "cliente_id")
+	@JoinColumn(name = "cliente")
 	private Cliente cliente;
 
-	public Compra(Cliente cliente, List<Produto> listaDeProdutos) {
+	public Compra(Cliente cliente, List<Item> listaDeProdutos) {
 		this.cliente = cliente;
-		preencherListaProdutosCompra(listaDeProdutos);
+		
+		this.listaDeProdutos = listaDeProdutos;
+		//preencherListaProdutosCompra(listaDeProdutos);
 		this.vendaFinalizada = false;
 	}
 
@@ -85,13 +84,12 @@ public class Compra implements Serializable {
 		this.vendaFinalizada = vendaFinalizada;
 	}
 
-	public List<ProdutoCompra> getListaDeProdutosCompra() {
-		return listaDeProdutosCompra;
+	public List<Item> getListaDeProdutos() {
+		return listaDeProdutos;
 	}
 
-	public void setListaDeProdutosCompra(List<ProdutoCompra> listaDeProdutosCompra) {
-		
-		this.listaDeProdutosCompra = new ArrayList<>(listaDeProdutosCompra);
+	public void setListaDeProdutos(List<Item> listaDeProdutos) {
+		this.listaDeProdutos = listaDeProdutos;
 	}
 
 	public Cliente getCliente() {
@@ -103,16 +101,16 @@ public class Compra implements Serializable {
 	}
 	
 	
-	public void preencherListaProdutosCompra(List<Produto> listaDeProdutos) {
+	/*public void preencherListaProdutosCompra(List<Produto> listaDeProdutos) {
 
-		List<ProdutoCompra> listaProdutosCompra = new ArrayList<>();
+		List<Item> listaProdutosCompra = new ArrayList<>();
 		
 		float precoFinal = 0;
 
 		if (listaDeProdutos != null ) {
 			for (Produto produto : listaDeProdutos) {
 				
-				ProdutoCompra produtoCompra = new ProdutoCompra();
+				Item produtoCompra = new Item();
 
 				produtoCompra.setNome(produto.getNome());
 				produtoCompra.setDescricao(produto.getDescricao());
@@ -127,6 +125,6 @@ public class Compra implements Serializable {
 			this.precoFinal = precoFinal;
 		}
 
-	}
+	}*/
 
 }
