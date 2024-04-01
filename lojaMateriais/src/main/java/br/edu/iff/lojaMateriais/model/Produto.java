@@ -21,11 +21,11 @@ public class Produto implements  Serializable{
 	 private Long id;
 	
 	@Column(name = "nome")
-	@Size(min=1,max=60,message="Tem que ter entre 1 e 60 caractéres")
+	@Size(min=2,max=60,message="Tem que ter entre 2 e 60 caractéres")
 	private String nome;
 	
 	@Column(name = "descricao")
-	@Size(min=1,max=512,message="Tem que ter entre 1 e 512 caractéres")
+	@Size(min=2,max=512,message="Tem que ter entre 2 e 512 caractéres")
 	private String descricao;
 	
 	@Column(name = "preco")

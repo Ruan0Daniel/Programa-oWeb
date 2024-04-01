@@ -46,7 +46,6 @@ public class UsuarioService {
 		return "Usuario criado com sucesso.";
 	}
 
-	@Transactional
 	public String atualizarUsuario(Long id, String email, String senha/* , Integer nivelAcesso */) {
 
 		Usuario usuario = usuarioRepository.findById(id).orElse(null);

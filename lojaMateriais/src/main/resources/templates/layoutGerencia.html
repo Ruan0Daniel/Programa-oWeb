@@ -138,7 +138,7 @@
 
 <body>
 	<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark" th:fragment="fragmento-header">
-		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Gerenciador ConstruCenter</a>
+		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" th:href="@{~/./gerencia}">Gerenciador ConstruCenter</a>
 
 		<ul class="navbar-nav flex-row d-md-none">
 			<li class="nav-item text-nowrap">
@@ -196,7 +196,7 @@
 										<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 											<li><a th:href="@{~/./cliente/listar}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Listar</a>
 											</li>
-											<li><a th:href="@{~/./cliente/adicionar}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Adicionar</a>
+											<li><a th:href="@{~/./cliente/cadastrarGerencia}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Adicionar</a>
 											</li>
 										</ul>
 									</div>

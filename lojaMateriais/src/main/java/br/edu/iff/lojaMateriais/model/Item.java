@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Item implements Serializable {
@@ -24,6 +25,7 @@ public class Item implements Serializable {
 	private Produto produto;
 
 	@Column(name = "quantidade")
+	@PositiveOrZero(message = "O valor total deve ser maior ou igual a 0")
 	private Integer quantidade;
 
 	public Item(Produto produto, Integer quantidade) {

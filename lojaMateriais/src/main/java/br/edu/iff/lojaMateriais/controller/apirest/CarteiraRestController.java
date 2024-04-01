@@ -23,14 +23,14 @@ public class CarteiraRestController {
 
 	private final CarteiraService carteiraService;
 
-	public CarteiraRestController(CarteiraService carteiraService) {
+	public CarteiraRestController(CarteiraService carteiraService) throws Exception{
 		this.carteiraService = carteiraService;
 	}
 
 	@PostMapping("")
 	@ResponseBody
 	@Operation(summary = "Adicionar carteira.")
-	public String adicionarCarteira() {
+	public String adicionarCarteira() throws Exception{
 
 		if (carteiraService.criarCarteira() == null) {
 			return "Carteira não foi criado.";
@@ -42,7 +42,7 @@ public class CarteiraRestController {
 	@PutMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Atualizar carteira.")
-	public String atualizarCarteira(@PathVariable("id") Long idCarteira, Float valor) {
+	public String atualizarCarteira(@PathVariable("id") Long idCarteira, Float valor) throws Exception{
 
 		return carteiraService.AtualizarSaldo(idCarteira, valor);
 	}
@@ -50,7 +50,7 @@ public class CarteiraRestController {
 	@DeleteMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Deletar carteira.")
-	public String deletarCarteira(@PathVariable("id") Long idCarteira) {
+	public String deletarCarteira(@PathVariable("id") Long idCarteira) throws Exception{
 
 		return carteiraService.deletarCarteira(idCarteira);
 	}
@@ -58,7 +58,7 @@ public class CarteiraRestController {
 	@GetMapping("")
 	@ResponseBody
 	@Operation(summary = "Listar Carteiras")
-	public List<Carteira> listarCarteiras() {
+	public List<Carteira> listarCarteiras() throws Exception{
 
 		return carteiraService.listarCarteiras();
 	}
@@ -66,7 +66,7 @@ public class CarteiraRestController {
 	@GetMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Buscar carteira.")
-	public Optional<Carteira> buscarCarteira(@PathVariable("id") Long id) {
+	public Optional<Carteira> buscarCarteira(@PathVariable("id") Long id) throws Exception{
 
 		return carteiraService.obterCarteira(id);
 	}

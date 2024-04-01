@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+
+	<link th:replace="~{layoutGerencia :: fragmento-head}">
+	
+		<style>
+		.odd {
+			background-color: #f2f2f2;
+			/* Define a cor de fundo para linhas ímpares */
+		}
+
+		.even {
+			background-color: #ffffff;
+			/* Define a cor de fundo para linhas pares */
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<link th:replace="~{layoutGerencia :: fragmento-header}">
+
+	<div class="container-fluid sidebar">
+		<div class="row">
+			<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+				<div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+					aria-labelledby="sidebarMenuLabel">
+
+					<link th:replace="~{layoutGerencia :: fragmento-lateral}">
+
+				</div>
+			</div>
+
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+				<div th:if="${listar_produtos != null}">
+
+					<div
+						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+						<h1 class="h2">Gerenciar Produtos - Listar</h1>
+					</div>
+					
+					
+					<script>
+						function confirmDelete() {
+							if (confirm('Tem certeza que deseja deletar este produto?')) {
+								// Exibe a mensagem de sucesso após a confirmação
+								alert('Produto deletado com sucesso.');
+								return true; // Continua com a exclusão
+							} else {
+								return false; // Cancela a exclusão
+							}
+						}
+					</script>
+
+					<table>
+						<thead>
+							<tr>
+								<th style="padding: 20px; text-align: center;">ID</th>
+								<th style="padding: 20px; text-align: center;">Nome</th>
+								<th style="padding: 20px; text-align: center;">Descrição</th>
+								<th style="padding: 20px; text-align: center;">Preço</th>
+								<th style="padding: 20px; text-align: center;">Estoque</th>
+								<th style="padding: 20px; text-align: center;">Ações</th>
+								<!-- Adicione mais colunas conforme necessário -->
+							</tr>
+						</thead>
+						
+						<tbody>
+							<tr th:each="produto, i : ${listar_produtos}" th:class="${i.odd}? 'odd' : 'even'">
+								<td th:text="${produto.id}" style="padding: 20px; text-align: center;">ID do
+									Produto </td>
+
+								<td th:text="${produto.nome}" style="padding: 20px; text-align: center;">Nome do
+									Produto </td>
+
+								<td th:text="${produto.descricao}" style="padding: 20px; text-align: center;">
+									Descrição do Produto</td>
+
+								<td th:text="${produto.preco}" style="padding: 20px; text-align: center;">Preço do Produto </td>
+
+								<td th:text="${produto.quantidadeEstoque}" style="padding: 20px; text-align: center;">
+									Quantidade no Estoque</td>
+
+
+								<td style="padding: 20px; text-align: center;">
+
+									<a th:href="@{/produto/editar/{id}(id=${produto.id})}"
+										class="btn btn-primary rounded-pill px-3">Editar</a> &nbsp;
+
+									<a th:href="@{/produto/deletarGerencia/{id}(id=${produto.id})}"
+										class="btn btn-danger rounded-pill px-3"
+										onclick="return confirmDelete()">Deletar</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</div>
+
+			</main>
+
+		</div>
+	</div>
+
+</body>
+
+</html>

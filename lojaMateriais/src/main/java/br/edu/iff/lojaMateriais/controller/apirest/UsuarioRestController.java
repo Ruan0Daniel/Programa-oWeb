@@ -23,14 +23,14 @@ public class UsuarioRestController {
 	
     private final UsuarioService usuarioService;
 
-    public UsuarioRestController(UsuarioService usuarioService) {
+    public UsuarioRestController(UsuarioService usuarioService) throws Exception{
         this.usuarioService = usuarioService;
     }
 	
     @PostMapping("{Email}/{Senha}")
 	@ResponseBody
 	@Operation(summary = "Adicionar usuário.")
-	public String adicionarUsuario(String email, String senha) {
+	public String adicionarUsuario(String email, String senha) throws Exception{
 		
 		return usuarioService.criarUsuario(email, senha);
 	}
@@ -41,7 +41,7 @@ public class UsuarioRestController {
 	public String atualizarUsuario( @PathVariable("id") Long id, 
 									@RequestParam(required = false) String usuario, 
 									@RequestParam(required = false) String senha/*,
-									@RequestParam(required = false) Integer nivelAcesso */) {
+									@RequestParam(required = false) Integer nivelAcesso */) throws Exception{
 		
 		return usuarioService.atualizarUsuario(id, usuario, senha/*, nivelAcesso*/);
 	}
@@ -49,7 +49,7 @@ public class UsuarioRestController {
 	@DeleteMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Deletar usuário.")
-	public String deletarUsuario(@PathVariable("id") Long idUsuario) {
+	public String deletarUsuario(@PathVariable("id") Long idUsuario) throws Exception{
 		
 		return usuarioService.deletarUsuario(idUsuario);
 	}
@@ -57,7 +57,7 @@ public class UsuarioRestController {
 	@GetMapping("")
 	@ResponseBody
 	@Operation(summary = "Listar usuários.")
-	public List<Usuario> listarUsuaruios()  {
+	public List<Usuario> listarUsuaruios()  throws Exception{
 		
 		return usuarioService.listarUsuarios();
 	}
@@ -65,7 +65,7 @@ public class UsuarioRestController {
 	@GetMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Buscar usuário.")
-	public Optional<Usuario> buscarUsuario(@PathVariable("id") Long idUsuario)  {
+	public Optional<Usuario> buscarUsuario(@PathVariable("id") Long idUsuario) throws Exception{
 		
 		return usuarioService.obterUsuario(idUsuario);
 	}

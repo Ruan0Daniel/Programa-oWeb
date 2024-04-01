@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+
+	<link th:replace="~{layoutGerencia :: fragmento-head}">
+
+	<style>
+		.odd {
+			background-color: #f2f2f2;
+			/* Define a cor de fundo para linhas ímpares */
+		}
+
+		.even {
+			background-color: #ffffff;
+			/* Define a cor de fundo para linhas pares */
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<link th:replace="~{layoutGerencia :: fragmento-header}">
+
+	<div class="container-fluid sidebar">
+		<div class="row">
+			<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+				<div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+					aria-labelledby="sidebarMenuLabel">
+
+					<link th:replace="~{layoutGerencia :: fragmento-lateral}">
+
+				</div>
+			</div>
+
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+				<script>
+					function confirmDelete() {
+						if (confirm('Tem certeza que deseja deletar esta compra?')) {
+							// Exibe a mensagem de sucesso após a confirmação
+							alert('Compra deletado com sucesso.');
+							return true; // Continua com a exclusão
+						} else {
+							return false; // Cancela a exclusão
+						}
+					}
+				</script>
+
+				<div
+					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Gerenciar Compras - Listar</h1>
+				</div>
+
+				<table>
+					<thead>
+						<tr>
+							<th style="padding: 20px; text-align: center;">ID</th>
+							<th style="padding: 20px; text-align: center;">Data e Hora</th>
+							<th style="padding: 20px; text-align: center;">Valor</th>
+							<th style="padding: 20px; text-align: center;">Cliente</th>
+							<th style="padding: 20px; text-align: center;">Email</th>
+							<th style="padding: 20px; text-align: center;">CPF</th>
+							<th style="padding: 20px; text-align: center;">Telefone</th>
+							<th style="padding: 20px; text-align: center;">Ações</th>
+							<!-- Adicione mais colunas conforme necessário -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="compra, i : ${listaDeCompras}" th:class="${i.odd}? 'odd' : 'even'">
+							<td th:text="${compra.id}" style="padding: 20px; text-align: center;">ID da Compra
+							</td>
+
+							<td th:text="${compra.dataHora}" style="padding: 20px; text-align: center;">Data da
+								Compra
+							</td>
+
+							<td style="padding: 20px; text-align: center;">
+								R$: <span th:text="${compra.precoFinal}"></span>
+							</td>
+
+							<td th:text="${compra.cliente.nome}" style="padding: 20px; text-align: center;">Nome do
+								Cliente
+							</td>
+							<td th:text="${compra.cliente.usuario.email}" style="padding: 20px; text-align: center;">
+								Email
+								do Cliente</td>
+							<td th:text="${compra.cliente.cpf}" style="padding: 20px; text-align: center;">CPF do
+								Cliente
+							</td>
+							<td th:text="${compra.cliente.telefone}" style="padding: 20px; text-align: center;">
+								Telefone do
+								Cliente</td>
+
+
+							<td style="padding: 20px; text-align: center;">
+
+								<a th:href="@{/compra/listarItensDaCompra/{id}(id=${compra.id})}"
+									class="btn btn-success rounded-pill px-3">Itens</a> &nbsp;
+
+								<a th:href="@{/compra/editar/{id}(id=${compra.id})}"
+									class="btn btn-primary rounded-pill px-3">Editar</a> &nbsp;
+
+								<a th:href="@{/compra/deletarCompra/{id}(id=${compra.id})}"
+									class="btn btn-danger rounded-pill px-3"
+									onclick="return confirmDelete()">Deletar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</main>
+
+		</div>
+	</div>
+
+</body>
+
+</html>

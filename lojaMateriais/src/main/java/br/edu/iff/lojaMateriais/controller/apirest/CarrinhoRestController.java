@@ -22,7 +22,7 @@ public class CarrinhoRestController {
 
 	private final CarrinhoService carrinhoService;
 
-	public CarrinhoRestController(CarrinhoService carrinhoService) {
+	public CarrinhoRestController(CarrinhoService carrinhoService) throws Exception{
 		this.carrinhoService = carrinhoService;
 	}
 
@@ -30,7 +30,7 @@ public class CarrinhoRestController {
 	@ResponseBody
 	@Operation(summary = "Adicionar produtos no carrinho.")
 	public String adicionarProdutoNoCarrinho(@PathVariable("idCarrinho") Long idCarrinho,
-			@PathVariable("idProduto") Long idProduto, Integer quantidade) {
+			@PathVariable("idProduto") Long idProduto, Integer quantidade) throws Exception{
 
 		return carrinhoService.adicionarProdutoNoCarrinho(idCarrinho, idProduto, quantidade);
 	}
@@ -39,7 +39,7 @@ public class CarrinhoRestController {
 	@ResponseBody
 	@Operation(summary = "remover produtos no carrinho.")
 	public String removerProdutoDoCarrinho(@PathVariable("idCarrinho") Long idCarrinho,
-			@PathVariable("idProduto") Long idProduto) {
+			@PathVariable("idProduto") Long idProduto) throws Exception{
 
 		return carrinhoService.removerProdutoDoCarrinho(idCarrinho, idProduto);
 	}
@@ -47,14 +47,14 @@ public class CarrinhoRestController {
 	@GetMapping("")
 	@ResponseBody
 	@Operation(summary = "listar todos os carrinhos.")
-	public List<Carrinho> listarCarrinhos() {
+	public List<Carrinho> listarCarrinhos() throws Exception{
 		return carrinhoService.listarCarrinhos();
 	}
 
 	@GetMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Procurar carrinho.")
-	public Optional<Carrinho> buscarCarrinho(Long idCarrinho) {
+	public Optional<Carrinho> buscarCarrinho(Long idCarrinho) throws Exception{
 		return carrinhoService.obterCarrinho(idCarrinho);
 	}
 
@@ -63,7 +63,7 @@ public class CarrinhoRestController {
 	@PostMapping()
 	@ResponseBody
 	@Operation(summary = "Criar um carrinho.")
-	public String criarCarrinho() {
+	public String criarCarrinho() throws Exception{
 
 		if (carrinhoService.criarCarrinho() == null) {
 			return "Carrinho não foi criado.";
@@ -75,7 +75,7 @@ public class CarrinhoRestController {
 	@DeleteMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Excluir carrinho.")
-	public String excluirCarrinho(Long id) {
+	public String excluirCarrinho(Long id) throws Exception{
 		return carrinhoService.deletarCarrinho(id);
 	}
 	
@@ -83,7 +83,7 @@ public class CarrinhoRestController {
 	@ResponseBody
 	@Operation(summary = "Editar valor final do carrinho.")
 	public String editarCarrinho(@PathVariable("idCarrinho") Long idCarrinho,
-			Float valorFinal) {
+			Float valorFinal) throws Exception{
 
 		return carrinhoService.editarCarrinho(idCarrinho, valorFinal);
 	}

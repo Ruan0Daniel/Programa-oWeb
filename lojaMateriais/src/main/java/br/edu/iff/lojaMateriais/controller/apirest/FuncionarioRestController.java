@@ -23,7 +23,7 @@ public class FuncionarioRestController {
 
 	private final FuncionarioService funcionarioService;
 
-	public FuncionarioRestController(FuncionarioService funcionarioService) {
+	public FuncionarioRestController(FuncionarioService funcionarioService) throws Exception{
 		this.funcionarioService = funcionarioService;
 	}
 
@@ -31,7 +31,7 @@ public class FuncionarioRestController {
 	@ResponseBody
 	@Operation(summary = "Adicionar funcionario.")
 	public String adicionarFuncionario(String email, String senha, String nome, String cpf, String telefone,
-			String funcao, Float salario, String dataAdmissao) {
+			String funcao, Float salario, String dataAdmissao) throws Exception{
 
 		return funcionarioService.adicionarFuncionario(email, senha, nome, cpf, telefone, funcao, salario,
 				dataAdmissao);
@@ -44,7 +44,7 @@ public class FuncionarioRestController {
 			@RequestParam(required = false) String email, @RequestParam(required = false) String senha,
 			@RequestParam(required = false) String nome, @RequestParam(required = false) String cpf,
 			@RequestParam(required = false) String telefone, @RequestParam(required = false) String funcao,
-			@RequestParam(required = false) Float salario, @RequestParam(required = false) String dataAdmissao) {
+			@RequestParam(required = false) Float salario, @RequestParam(required = false) String dataAdmissao) throws Exception{
 
 		return funcionarioService.atualizarFuncionario(idFuncionario, email, senha, nome, cpf, telefone, funcao,
 				salario, dataAdmissao);
@@ -53,21 +53,21 @@ public class FuncionarioRestController {
 	@DeleteMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Deletar funcionario.")
-	public String deletarFuncionario(@PathVariable("id") Long idFuncionario) {
+	public String deletarFuncionario(@PathVariable("id") Long idFuncionario) throws Exception{
 		return funcionarioService.deletarFuncionario(idFuncionario);
 	}
 
 	@GetMapping("")
 	@ResponseBody
 	@Operation(summary = "Listar funcionarios.")
-	public List<Funcionario> listarFuncionarios() {
+	public List<Funcionario> listarFuncionarios() throws Exception{
 		return funcionarioService.listarFuncionarios();
 	}
 
 	@GetMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Obter funcionario.")
-	public Optional<Funcionario> buscarFuncionario(@PathVariable("id") Long idFuncionario) {
+	public Optional<Funcionario> buscarFuncionario(@PathVariable("id") Long idFuncionario) throws Exception{
 		return funcionarioService.buscarFuncionario(idFuncionario);
 	}
 }

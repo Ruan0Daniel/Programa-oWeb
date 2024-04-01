@@ -23,14 +23,14 @@ public class ProdutoRestController {
 
 	private final ProdutoService produtoService;
 
-	public ProdutoRestController(ProdutoService produtoService) {
+	public ProdutoRestController(ProdutoService produtoService) throws Exception{
 		this.produtoService = produtoService;
 	}
 
 	@PostMapping("")
 	@ResponseBody
 	@Operation(summary = "Adicionar produto.")
-	public String adicionarProduto(String nome, String desc, float preco, int quatidade) {
+	public String adicionarProduto(String nome, String desc, float preco, int quatidade) throws Exception{
 
 		return produtoService.salvarProduto(nome, desc, preco, quatidade);
 	}
@@ -40,7 +40,7 @@ public class ProdutoRestController {
 	@Operation(summary = "Atualizar produto.")
 	public String atualizarProduto(@PathVariable("id") Long id, @RequestParam(required = false) String nome,
 			@RequestParam(required = false) String desc, @RequestParam(required = false) Float preco,
-			@RequestParam(required = false) Integer quantidade) {
+			@RequestParam(required = false) Integer quantidade) throws Exception{
 
 		return produtoService.atualizarProduto(id, nome, desc, preco, quantidade);
 	}
@@ -48,7 +48,7 @@ public class ProdutoRestController {
 	@DeleteMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Deletar produto.")
-	public String deletarProduto(@PathVariable Long id) {
+	public String deletarProduto(@PathVariable Long id) throws Exception{
 
 		return produtoService.deletarProduto(id);
 	}
@@ -56,7 +56,7 @@ public class ProdutoRestController {
 	@GetMapping("")
 	@ResponseBody
 	@Operation(summary = "Listar produtos.")
-	public List<Produto> listarProdutos() {
+	public List<Produto> listarProdutos() throws Exception{
 
 		return produtoService.listarProdutos();
 	}
@@ -64,7 +64,7 @@ public class ProdutoRestController {
 	@GetMapping("/{id}")
 	@ResponseBody
 	@Operation(summary = "Buscar produtos.")
-	public Optional<Produto> buscarProduto(@PathVariable("id") Long id) {
+	public Optional<Produto> buscarProduto(@PathVariable("id") Long id) throws Exception{
 
 		return produtoService.obterProdutoPorId(id);
 	}

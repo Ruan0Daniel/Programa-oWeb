@@ -78,6 +78,30 @@ public class CarrinhoService {
 
 		return "Operação realizada";
 	}
+	
+	public String atualizarProduto(Long idCarrinho, Long idItem, Integer novaQuantidade) {
+	    Optional<Carrinho> carrinhoOptional = obterCarrinho(idCarrinho);
+	    
+	    if (carrinhoOptional.isEmpty()) {
+	        return "Carrinho não encontrado";
+	    }
+	    
+	    Carrinho carrinho = carrinhoOptional.get();
+	    
+	    Optional<Item> itemOptional = carrinho.getListaDeItems().stream()
+	                                       .filter(item -> item.getId().equals(idItem))
+	                                       .findFirst();
+	    
+	    if (itemOptional.isEmpty()) {
+	        return "Item não encontrado no carrinho";
+	    }
+	    
+	    Item item = itemOptional.get();
+	    item.setQuantidade(novaQuantidade);
+	    itemRepository.save(item);
+	    
+	    return "Quantidade do item atualizada com sucesso";
+	}
 
 	public String removerProdutoDoCarrinho(Long idCarrinho, Long idItem) {
 

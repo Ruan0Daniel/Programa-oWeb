@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+
+	<link th:replace="~{layoutGerencia :: fragmento-head}">
+
+	<style>
+		.odd {
+			background-color: #f2f2f2;
+			/* Define a cor de fundo para linhas ímpares */
+		}
+
+		.even {
+			background-color: #ffffff;
+			/* Define a cor de fundo para linhas pares */
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<link th:replace="~{layoutGerencia :: fragmento-header}">
+
+	<div class="container-fluid sidebar">
+		<div class="row">
+			<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+				<div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+					aria-labelledby="sidebarMenuLabel">
+
+					<link th:replace="~{layoutGerencia :: fragmento-lateral}">
+
+				</div>
+			</div>
+
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+				<div
+					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Gerenciar Compras - Editar</h1>
+				</div>
+
+				<form class="needs-validation" novalidate th:action="@{/compra/atualizar/{id}(id=${editarCompra.id})}"
+					th:object="${editarCompra}" method="post">
+					<div class="row g-3">
+						<div class="col-6">
+							<label for="nome" class="form-label">Data e Hora</label>
+							<input type="text" class="form-control" th:field="*{dataHora}" required />
+							<div class="invalid-feedback">
+								É obrigatório.
+							</div>
+						</div>
+
+						<div class="col-6">
+							<label for="phone" class="form-label">Preço Final</label>
+							<input type="text" class="form-control" th:field="*{precoFinal}"
+								placeholder="(22) 99876-4321" required>
+							<div class="invalid-feedback">
+								É obrigatório.
+							</div>
+						</div>
+
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary">Atualizar</button>
+						</div>
+					</div>
+				</form>
+
+			</main>
+
+		</div>
+	</div>
+
+</body>
+
+</html>

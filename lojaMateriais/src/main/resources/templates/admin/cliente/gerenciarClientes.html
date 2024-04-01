@@ -49,69 +49,6 @@
 
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-				<div th:if="${cliente_add != null}">
-
-
-
-					<div
-						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-						<h1 class="h2">Gerenciar Clientes - Adicionar</h1>
-					</div>
-
-					<form class="needs-validation" novalidate action="#" th:action="@{/cliente/cadastrarGerencia}"
-						th:object="${cliente_add}" method="post">
-						<div class="row g-3">
-							<div class="col-6">
-								<label for="nome" class="form-label">Nome Completo</label>
-								<input type="text" class="form-control" th:field="*{nome}" required />
-								<div class="invalid-feedback">
-									O nome é obrigatório.
-								</div>
-							</div>
-
-							<div class="col-6">
-								<label for="phone" class="form-label">Telefone</label>
-								<input type="text" class="form-control" th:field="*{telefone}"
-									placeholder="(22) 99876-4321" required>
-								<div class="invalid-feedback">
-									Por favor, forneça um número de telefone válido.
-								</div>
-							</div>
-
-							<div class="col-6">
-								<label for="cpf" class="form-label">CPF</label>
-								<input type="text" class="form-control" th:field="*{cpf}" placeholder="123.456.789-00"
-									required>
-								<div class="invalid-feedback">
-									Por favor, forneça um CPF válido.
-								</div>
-							</div>
-
-							<div class="col-6">
-								<label for="email" class="form-label">Email</label>
-								<input type="email" class="form-control" id="email" name="email"
-									th:field="*{Usuario.email}" placeholder="you@example.com">
-								<div class="invalid-feedback">
-									Por favor, insira um endereço de e-mail válido.
-								</div>
-							</div>
-
-							<div class="col-6 mb-3">
-								<label for="password" class="form-label">Senha</label>
-								<input type="password" class="form-control" id="senha" name="senha" placeholder=""
-									th:field="*{Usuario.senha}" required>
-								<div class="invalid-feedback">
-									Por favor, forneça uma senha.
-								</div>
-							</div>
-
-							<div class="col-12">
-								<button type="submit" class="btn btn-primary">Adicionar</button>
-							</div>
-						</div>
-					</form>
-				</div>
-
 				<div th:if="${cliente_lista != null}">
 
 					<script>
@@ -163,10 +100,10 @@
 
 								<td style="padding: 20px; text-align: center;">
 
-									<a th:href="@{/cliente/carrinho/{id}(id=${cliente.id})}"
+									<a th:href="@{/carrinho/carrinho/{id}(id=${cliente.id})}"
 										class="btn btn-success rounded-pill px-3">Carrinho</a> &nbsp;
 
-									<a th:href="@{/cliente/editar/{id}(id=${cliente.id})}"
+									<a th:href="@{/cliente/atualizar/{id}(id=${cliente.id})}"
 										class="btn btn-primary rounded-pill px-3">Editar</a> &nbsp;
 
 									<a th:href="@{/cliente/deletarGerencia/{id}(id=${cliente.id})}"
@@ -178,125 +115,17 @@
 					</table>
 				</div>
 
-				<div th:if="${cliente_editar != null}">
-					<div
-						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-						<h1 class="h2">Gerenciar Clientes - Editar</h1>
-					</div>
-
-
-					<form class="needs-validation" novalidate
-						th:action="@{/cliente/atualizar/{id}(id=${cliente_editar.id})}" th:object="${cliente_editar}"
-						method="post">
-						<div class="row g-3">
-							<div class="col-6">
-								<label for="nome" class="form-label">Nome Completo</label>
-								<input type="text" class="form-control" th:field="*{nome}" required />
-								<div class="invalid-feedback">
-									O nome é obrigatório.
-								</div>
-							</div>
-
-							<div class="col-6">
-								<label for="phone" class="form-label">Telefone</label>
-								<input type="text" class="form-control" th:field="*{telefone}"
-									placeholder="(22) 99876-4321" required>
-								<div class="invalid-feedback">
-									Por favor, forneça um número de telefone válido.
-								</div>
-							</div>
-
-							<div class="col-6">
-								<label for="cpf" class="form-label">CPF</label>
-								<input type="text" class="form-control" th:field="*{cpf}" placeholder="123.456.789-00"
-									required>
-								<div class="invalid-feedback">
-									Por favor, forneça um CPF válido.
-								</div>
-							</div>
-
-							<div class="col-6">
-								<label for="cpf" class="form-label">Saldo</label>
-								<input type="text" class="form-control" th:field="*{carteira.saldoDisponivel}" required>
-								<div class="invalid-feedback">
-
-								</div>
-							</div>
-
-							<div class="col-6">
-								<label for="email" class="form-label">Email</label>
-								<input type="email" class="form-control" id="email" name="email"
-									th:field="*{Usuario.email}" placeholder="you@example.com">
-								<div class="invalid-feedback">
-									Por favor, insira um endereço de e-mail válido.
-								</div>
-							</div>
-
-							<div class="col-6 mb-3">
-								<label for="password" class="form-label">Senha</label>
-								<input type="password" class="form-control" id="senha" name="senha"
-									th:field="*{Usuario.senha}" required>
-								<div class="invalid-feedback">
-									Por favor, forneça uma senha.
-								</div>
-							</div>
-
-							<div class="col-12">
-								<button type="submit" class="btn btn-primary">Atualizar</button>
-							</div>
-						</div>
-					</form>
-
-
-				</div>
-
 				<div th:if="${cliente != null}">
 
 					<link rel="stylesheet"
 						href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-					<!-- jQuery -->
-					<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-					<!-- Bootstrap JS -->
-					<script
-						src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
-					<script>
-
-
-						function confirmDelete() {
-							if (confirm('Tem certeza que deseja remover este Item?')) {
-								// Exibe a mensagem de sucesso após a confirmação
-								alert('item removido com sucesso.');
-								return true; // Continua com a exclusão
-							} else {
-								return false; // Cancela a exclusão
-							}
-						}
-
-						$(document).ready(function () {
-							$('#btnSalvar').click(function () {
-								var novaQuantidade = $('#novaQuantidade').val();
-								// Faça o que for necessário com a nova quantidade aqui
-								console.log("Nova quantidade:", novaQuantidade);
-								// Feche o modal
-								$('#editarModal').modal('hide');
-							});
-						});
-
-
-						function setIdItem(idItem) {
-							document.getElementById('idItemModal').value = idItem;
-						}
-
-					</script>
-
-
 					<div
 						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 						<h1 class="h2">Gerenciar Clientes - Carrinho</h1>
 						<a th:href="@{/compra/finalizarCompra/{id}(id=${cliente.id})}">
-							<button type="submit" class="btn btn-success">Finalizar Compra</button>
+							<button type="submit" class="btn btn-success">Finalizar
+								Compra</button>
 						</a>
 					</div>
 
@@ -334,12 +163,14 @@
 								<td style="padding: 20px; text-align: center;">
 
 									<a th:data-iditem="${listaDeItens.id}" class="btn btn-primary rounded-pill px-3"
-										data-toggle="modal" data-target="#editarModal"
-										onclick="setIdItem(this.getAttribute('data-iditem'))">Editar</a> &nbsp;
+										th:data-target="'#editarModal-' + ${listaDeItens.id}"
+										th:attr="onclick='setIdItem(' + ${listaDeItens.id} + ')'"
+										data-toggle="modal">Editar</a> &nbsp;
 
+									<div class="modal" th:id="'editarModal-' + ${listaDeItens.id}" tabindex="-1"
+										role="dialog" aria-labelledby="editarModalLabel" aria-hidden="true"
+										style="display: none;">
 
-									<div class="modal fade" id="editarModal" tabindex="-1" role="dialog"
-										aria-labelledby="editarModalLabel" aria-hidden="true">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -351,15 +182,14 @@
 												</div>
 
 												<div class="modal-body">
-													<form id="formEditar" th:action="@{/item/editar/{idItem}(id=${listaDeItens.id})}"
-														th:object="${item}" method="post">
+													<form id="formEditar"
+														th:action="@{/carrinho/editarItemNoCarrinho(carrinhoId=${cliente.carrinho.id}, itemId=${listaDeItens.id})}"
+														method="post">
 														<div class="form-group">
-															
 															<label for="novaQuantidade">Nova Quantidade:</label>
-															
 															<input type="number" class="form-control"
 																id="novaQuantidade" name="novaQuantidade"
-																th:field="*{quantidade}">
+																th:value="${listaDeItens.quantidade}" required min="0">
 														</div>
 												</div>
 
@@ -407,7 +237,7 @@
 							<div class="form-group">
 								<label for="quantidade">Quantidade:</label>
 								<input type="number" id="quantidade" name="quantidade" class="form-control"
-									th:field="*{quantidade}">
+									th:field="*{quantidade}" required min="0">
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
@@ -420,11 +250,41 @@
 
 		</main>
 
-
-
-
 	</div>
 	</div>
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+	<script>
+
+
+		function confirmDelete() {
+			if (confirm('Tem certeza que deseja remover este Item?')) {
+				// Exibe a mensagem de sucesso após a confirmação
+				alert('item removido com sucesso.');
+				return true; // Continua com a exclusão
+			} else {
+				return false; // Cancela a exclusão
+			}
+		}
+
+
+		function setIdItem(idItem) {
+			var modalId = "editarModal-" + idItem;
+			document.getElementById('idItemModal').value = idItem;
+			var modal = document.getElementById(modalId);
+			var modalDialog = modal.querySelector('.modal-dialog');
+			modalDialog.style.display = 'block';
+			modal.style.display = 'block';
+			var backdrop = document.createElement('div');
+			backdrop.classList.add('modal-backdrop', 'fade', 'show');
+			document.body.appendChild(backdrop);
+		}
+
+	</script>
 
 </body>
 

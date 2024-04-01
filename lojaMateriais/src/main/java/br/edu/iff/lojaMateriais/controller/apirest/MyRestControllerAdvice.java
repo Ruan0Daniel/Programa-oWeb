@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class MyRestControllerAdvice {
-
+/*
 	@ExceptionHandler(Exception.class)
 	
 	public ResponseEntity erroException(Exception e, HttpServletRequest request)
@@ -19,5 +19,5 @@ public class MyRestControllerAdvice {
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 		
-	}
+	}*/
 }

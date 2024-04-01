@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+
+	<link th:replace="~{layoutGerencia :: fragmento-head}">
+
+	<style>
+		.odd {
+			background-color: #f2f2f2;
+			/* Define a cor de fundo para linhas ímpares */
+		}
+
+		.even {
+			background-color: #ffffff;
+			/* Define a cor de fundo para linhas pares */
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<link th:replace="~{layoutGerencia :: fragmento-header}">
+
+	<div class="container-fluid sidebar">
+		<div class="row">
+			<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+				<div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+					aria-labelledby="sidebarMenuLabel">
+
+					<link th:replace="~{layoutGerencia :: fragmento-lateral}">
+
+				</div>
+			</div>
+
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+				<div
+					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Gerenciar Funcionarios - Adicionar</h1>
+				</div>
+
+				<form  th:action="@{/funcionario/cadastrarGerencia}" th:object="${funcionario}" method="post">
+					<div class="row g-3">
+
+						<div class="col-6">
+							<label for="nome" class="form-label">Nome Completo</label>
+							<input type="text" class="form-control" th:field="*{nome}" required />
+							<div th:if="${#fields.hasErrors('nome')}">
+								<span th:each="err : ${#fields.errors('nome')}" th:text="${err}">Erro</span>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<label for="phone" class="form-label">Telefone</label>
+							<input type="text" class="form-control" th:field="*{telefone}" placeholder="(22) 99876-4321"
+								required>
+							<div th:if="${#fields.hasErrors('telefone')}">
+								<span th:each="err : ${#fields.errors('telefone')}" th:text="${err}">Erro</span>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<label for="cpf" class="form-label">CPF</label>
+							<input type="text" class="form-control" th:field="*{cpf}" placeholder="123.456.789-00"
+								required>
+							<div th:if="${#fields.hasErrors('cpf')}">
+								<span th:each="err : ${#fields.errors('cpf')}" th:text="${err}">Erro</span>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<label for="cpf" class="form-label">Salário</label>
+							<input type="number" class="form-control" th:field="*{salario}" required
+								min="0" step="any">
+							<div th:if="${#fields.hasErrors('salario')}">
+								<span th:each="err : ${#fields.errors('salario')}" th:text="${err}">Erro</span>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<label for="cpf" class="form-label">Função</label>
+							<input type="text" class="form-control" th:field="*{funcao}" required>
+							<div th:if="${#fields.hasErrors('funcao')}">
+								<span th:each="err : ${#fields.errors('funcao')}" th:text="${err}">Erro</span>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<label for="cpf" class="form-label">Data de admissão</label>
+							<input type="text" class="form-control" th:field="*{dataAdimissao}" required>
+							<div th:if="${#fields.hasErrors('dataAdimissao')}">
+								<span th:each="err : ${#fields.errors('dataAdimissao')}" th:text="${err}">Erro</span>
+							</div>
+						</div>
+
+
+
+						<div class="col-6">
+							<label for="email" class="form-label">Email</label>
+							<input type="email" class="form-control" id="email" name="email" th:field="*{Usuario.email}"
+								placeholder="you@example.com" required>
+							<div th:if="${#fields.hasErrors('usuario.email')}">
+								<span th:each="err : ${#fields.errors('usuario.email')}" th:text="${err}">Erro</span>
+							</div>
+						</div>
+
+						<div class="col-6 mb-3">
+							<label for="password" class="form-label">Senha</label>
+							<input type="password" class="form-control" id="senha" name="senha"
+								th:field="*{Usuario.senha}" required>
+							<div th:if="${#fields.hasErrors('usuario.senha')}">
+								<span th:each="err : ${#fields.errors('usuario.senha')}" th:text="${err}">Erro</span>
+							</div>
+						</div>
+
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary">Adicionar</button>
+						</div>
+				</form>
+			</main>
+		</div>
+	</div>
+
+</body>
+
+</html>
